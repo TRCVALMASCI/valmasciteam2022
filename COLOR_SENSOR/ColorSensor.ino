@@ -28,6 +28,7 @@ void setup() {
     Serial.println(F("SSD1306 allocation failed"));
     for (;;);
 }
+  lcdsetup();
 }
 
 void loop() {
@@ -56,17 +57,32 @@ void loop() {
   
   delay(500);
 
-    if (r > g || r > b || r > c) {
+    if (r > g && r > b && r >= c) {
+      display.clearDisplay();
+      display.setCursor(0, 0);
       display.print("RED");
     }
-    else if (g > r || g > b || g > c){
+    else if (g > r && g > b && g >= c){
+      display.clearDisplay();
+      display.setCursor(0, 0);
       display.print("GREEN");
     }
-    else if (b > r || b > g || b > c){
+    else if (b > r && b > g && b >= c){
+      display.clearDisplay();
+      display.setCursor(0, 0);
       display.print("BLUE");
     }
-    else if (c > r || c > g || c > b){
+    else if (c > r && c > g && c >= b){
+      display.clearDisplay();
+      display.setCursor(0, 0);
       display.print("CLEAR");
     }
        display.display();
   }
+
+ void lcdsetup(){
+  display.clearDisplay();
+  display.setTextSize(3);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+ }
